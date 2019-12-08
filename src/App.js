@@ -1,9 +1,13 @@
 import React from 'react';
-
+import Header from './component/Header';
 
 function App() {
   return (
-    <h1>Hola mundo</h1>
+    <div className="App">
+      <Header
+      titulo='Clima React App'
+      />
+    </div>
   );
 }
 
