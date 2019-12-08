@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from './component/Header';
-import Formulario from './component/Formulario';
-import Error from './component/Error';
+import Header from './components/Header';
+import Formulario from './components/Formulario';
+import Error from './components/Error';
+import Clima from './components/Clima';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
 
       //Consultar la URL
       const respuesta = await fetch(url);
-      const resultado= await respuesta.json();
+      const resultado = await respuesta.json();
 
       guardarResultado(resultado);
     }
@@ -51,9 +52,11 @@ function App() {
     if(error) {
       //Hay error - mostrarlo
       componente = <Error mensaje='Ambos campos son obligatorios' />
+    } else if( resultado.cod === "404") {
+        componente = <Error mensaje="La ciudad no existe en nuestro registro" />
     } else {
       //Mostrar el clima
-      componente = null;
+      componente = <Clima resultado = {resultado} />;
     }
 
   return (
